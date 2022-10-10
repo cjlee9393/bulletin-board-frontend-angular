@@ -6,6 +6,11 @@ import { environment } from 'src/environments/environment';
 
 const API_HOST = environment.apiHost;
 const token_auth = environment.token_auth;
+const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${token_auth}`
+})
+const requestOptions = { headers: headers };
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +21,21 @@ export class DocumentService {
 
   getDocuments(bid: number): Observable<Document[]> {
     const path = `${API_HOST}/documents/${bid}`
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token_auth}`
-    })
-    const requestOptions = { headers: headers };
 
     return this.httpClient.get(path, requestOptions) as Observable<Document[]>
+  }
+
+  updateDocument(document: Document): Observable<Object> {
+    const did = document.did;
+    const documentname = document.documentname;
+    const content = document.content;
+    
+    const path = `${API_HOST}/documents/${did}`
+    const body = {
+                  documentname: documentname,
+                  content: content
+                };
+
+    return this.httpClient.patch(path, body, requestOptions) as Observable<Object>;
   }
 }

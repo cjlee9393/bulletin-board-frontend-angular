@@ -1,4 +1,5 @@
 export type Document = {
     did: number,
-    documentname: string
+    documentname: string,
+    content: string
 }

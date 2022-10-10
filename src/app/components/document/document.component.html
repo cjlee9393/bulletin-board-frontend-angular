@@ -1,1 +1,10 @@
-<p>document works!</p>
+<div *ngIf="isShowDocumentView">
+    <p>did:{{document.did}}</p>
+    <p>documentname:{{document.documentname}}</p>
+    <p>content:{{document.content}}</p>
+    <button (click)="editDocument()">Edit Document</button>
+    <button (click)="deleteDocument()">Delete Document</button>
+</div>
+<div *ngIf="isShowDocumentEdit">
+    <app-document-edit [document]="document"></app-document-edit>
+</div>

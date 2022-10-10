@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
+import { Document } from 'src/app/models/document';
 
 @Component({
   selector: 'app-document',
@@ -6,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./document.component.css']
 })
 export class DocumentComponent implements OnInit {
+  @Input() document: Document;
 
-  constructor() { }
+  isShowDocumentView: boolean;
+  isShowDocumentEdit: boolean;
 
-  ngOnInit(): void {
+  constructor() {
+    this.document = {} as Document;
+    this.isShowDocumentView = false;
+    this.isShowDocumentEdit = false;
   }
 
+  ngOnInit(): void {
+    this.isShowDocumentView = true;
+    this.isShowDocumentEdit = false;
+  }
+
+  editDocument(): void {
+    this.isShowDocumentView = false;
+    this.isShowDocumentEdit = true;
+  }
+
+  deleteDocument(): void {
+    alert('deleteDocument()')
+  }
 }
