@@ -1,4 +1,8 @@
-<p>document-list works!</p>
+<div class="search-bar">
+    <input type="text" name="search" [(ngModel)]="searchString">
+    <button (click)="search(searchString)">Search</button>
+    <button>Create New</button>
+</div>
 <div class="document" *ngFor="let document of documents" (click)="viewDocument(document)">
     <p>{{document.did}}</p>
     <p>{{document.documentname}}</p>
