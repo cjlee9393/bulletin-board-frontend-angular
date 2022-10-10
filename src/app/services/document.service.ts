@@ -38,4 +38,17 @@ export class DocumentService {
 
     return this.httpClient.patch(path, body, requestOptions) as Observable<Object>;
   }
+
+  createDocument(wid: number, bid: number, document: Document): Observable<Object> {
+    
+    const path = `${API_HOST}/documents`
+    const body = {
+                  wid: wid,
+                  bid: bid,
+                  documentname: document.documentname,
+                  content: document.content
+                };
+
+    return this.httpClient.post(path, body, requestOptions) as Observable<Object>;
+  }
 }

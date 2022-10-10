@@ -12,6 +12,8 @@ import { HeaderComponent } from './Layout/header/header.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DeliverPointComponent } from './components/deliver-point/deliver-point.component';
+import { DocumentCreateComponent } from './components/document-create/document-create.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule } from '@angular/forms';
     CommentComponent,
     CommentEditComponent,
     HeaderComponent,
+    DeliverPointComponent,
+    DocumentCreateComponent,
   ],
   imports: [
     BrowserModule,

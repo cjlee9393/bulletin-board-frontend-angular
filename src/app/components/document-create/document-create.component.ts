@@ -3,15 +3,19 @@ import { Input } from '@angular/core';
 import { DocumentService } from 'src/app/services/document.service';
 import { Document } from 'src/app/models/document';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
+const wid = environment.wid;
+const bid = environment.bid;
 
 @Component({
-  selector: 'app-document-edit',
-  templateUrl: './document-edit.component.html',
-  styleUrls: ['./document-edit.component.css']
+  selector: 'app-document-create',
+  templateUrl: './document-create.component.html',
+  styleUrls: ['./document-create.component.css']
 })
-export class DocumentEditComponent implements OnInit {
+export class DocumentCreateComponent implements OnInit {
   @Input() document: Document;
-  
+
   constructor(private documentService: DocumentService, private route: ActivatedRoute, private router: Router) {
     this.document = {} as Document;
   }
@@ -19,11 +23,11 @@ export class DocumentEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  edit(document: Document): void {
-    this.documentService.updateDocument(document).subscribe(res => {
-      console.log('patch reqeust sent');
+  create(document: Document): void {
+    this.documentService.createDocument(wid, bid, document).subscribe(res => {
+      console.log('post reqeust sent');
 
       this.router.navigate(['/']);
     })
-  }  
+  }
 }

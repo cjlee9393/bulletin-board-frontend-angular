@@ -21,6 +21,7 @@ export class DocumentListComponent implements OnInit {
   searchString: string;
   
   isShowDocument: boolean;
+  isShowDocumentCreate: boolean;
   isShowDocumentList: boolean;
 
   mySubscription;
@@ -31,6 +32,7 @@ export class DocumentListComponent implements OnInit {
     this.comments = [];
     this.searchString = '';
     this.isShowDocument = false;
+    this.isShowDocumentCreate = false;
     this.isShowDocumentList = false;
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -48,6 +50,7 @@ export class DocumentListComponent implements OnInit {
     })
 
     this.isShowDocument = false;
+    this.isShowDocumentCreate = false;
     this.isShowDocumentList = true;
   }
 
@@ -59,6 +62,16 @@ export class DocumentListComponent implements OnInit {
     })
     this.document = document;
     this.isShowDocument = true;
+  }
+  
+  createDocument(): void {
+    this.document = {
+      documentname: '',
+      content: ''
+    } as Document;
+
+    this.isShowDocumentCreate = true;
+    this.isShowDocumentList = false;
   }
 
   search(searchString: string): void {

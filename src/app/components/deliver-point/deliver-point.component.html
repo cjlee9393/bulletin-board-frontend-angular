@@ -1,0 +1,7 @@
+<div class="deliver-point-container">
+    <select class="select-input" name="selectedWriter" [(ngModel)]="selectedWriter">
+        <option *ngFor="let writer of writers" [ngValue]="writer">{{writer.username}}</option>
+    </select>
+    <input type="number" class="number-input" name="point" [(ngModel)]="point">
+    <button (click)="deliverPoint(loggedInWriter, selectedWriter, point)">Deliver Point</button>
+</div>

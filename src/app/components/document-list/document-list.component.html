@@ -1,9 +1,10 @@
+<app-document-create *ngIf="isShowDocumentCreate" [document]="document"></app-document-create>
 <app-document *ngIf="isShowDocument" [document]="document" [comments]="comments"></app-document>
 <div *ngIf="isShowDocumentList">
     <div class="search-bar">
         <input type="text" name="search" [(ngModel)]="searchString">
         <button (click)="search(searchString)">Search</button>
-        <button>Create New</button>
+        <button (click)="createDocument()">Create New</button>
     </div>
     <div class="document" *ngFor="let document of documents" (click)="viewDocument(document)">
         <p>{{document.did}}</p>
