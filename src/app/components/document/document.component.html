@@ -1,9 +1,12 @@
-<div *ngIf="isShowDocumentView">
-    <p>did:{{document.did}}</p>
-    <p>documentname:{{document.documentname}}</p>
-    <p>content:{{document.content}}</p>
-    <button (click)="editDocument()">Edit Document</button>
-    <button (click)="deleteDocument()">Delete Document</button>
+<div class="document-container" *ngIf="isShowDocumentView">
+    <div class="document-header">
+        <h1 class="document-name">{{document.documentname}}</h1>
+        <div class="buttons">
+            <button (click)="editDocument()">Edit Document</button>
+            <button (click)="deleteDocument()">Delete Document</button>
+        </div>
+    </div>
+    <div class="content">{{document.content}}</div>
 </div>
 <div *ngIf="isShowDocumentEdit">
     <app-document-edit [document]="document"></app-document-edit>

@@ -6,8 +6,8 @@ import { CommentService } from 'src/app/services/comment.service';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
-
 const bid = environment.bid;
+const boardname = environment.boardname;
 
 @Component({
   selector: 'app-document-list',
@@ -15,10 +15,12 @@ const bid = environment.bid;
   styleUrls: ['./document-list.component.css']
 })
 export class DocumentListComponent implements OnInit {
+  boardname: string;
   documents: Document[];
   document: Document;
   comments: Comment[];
   searchString: string;
+  tableHeaders: string[];
   
   isShowDocument: boolean;
   isShowDocumentCreate: boolean;
@@ -27,6 +29,7 @@ export class DocumentListComponent implements OnInit {
   mySubscription;
 
   constructor(private documentService: DocumentService, private commentService: CommentService, private router: Router) {
+    this.boardname = boardname;
     this.documents = [];
     this.document = {} as Document;
     this.comments = [];
@@ -34,6 +37,7 @@ export class DocumentListComponent implements OnInit {
     this.isShowDocument = false;
     this.isShowDocumentCreate = false;
     this.isShowDocumentList = false;
+    this.tableHeaders = [];
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.mySubscription = this.router.events.subscribe((event) => {
@@ -52,6 +56,8 @@ export class DocumentListComponent implements OnInit {
     this.isShowDocument = false;
     this.isShowDocumentCreate = false;
     this.isShowDocumentList = true;
+
+    this.tableHeaders = this.documentService.getTableHearders()
   }
 
   viewDocument(document: Document): void {

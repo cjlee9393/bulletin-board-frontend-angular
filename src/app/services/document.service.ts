@@ -16,6 +16,7 @@ const requestOptions = { headers: headers };
   providedIn: 'root'
 })
 export class DocumentService {
+  tableHeaders: string[] = ['did', 'documentname'];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -56,5 +57,9 @@ export class DocumentService {
     const path = `${API_HOST}/documents?did=${did}`
 
     return this.httpClient.delete(path, requestOptions) as Observable<Object>;
+  }
+
+  getTableHearders(): string[] {
+    return this.tableHeaders;
   }
 }

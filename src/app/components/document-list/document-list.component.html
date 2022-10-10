@@ -1,13 +1,20 @@
-<app-document-create *ngIf="isShowDocumentCreate" [document]="document"></app-document-create>
-<app-document *ngIf="isShowDocument" [document]="document" [comments]="comments"></app-document>
-<div *ngIf="isShowDocumentList">
-    <div class="search-bar">
-        <input type="text" name="search" [(ngModel)]="searchString">
-        <button (click)="search(searchString)">Search</button>
+
+<div class="document-list-container">
+    <div class="document-list-header">
+        <h1>{{boardname}}</h1>
         <button (click)="createDocument()">Create New</button>
     </div>
-    <div class="document" *ngFor="let document of documents" (click)="viewDocument(document)">
-        <p>{{document.did}}</p>
-        <p>{{document.documentname}}</p>
+
+    <app-document-create *ngIf="isShowDocumentCreate" [document]="document"></app-document-create>
+    <app-document *ngIf="isShowDocument" [document]="document" [comments]="comments"></app-document>
+    <div class="document-list-items" *ngIf="isShowDocumentList">
+        <div class="document" *ngFor="let document of documents" (click)="viewDocument(document)">
+            <p>{{document.did}}</p>
+            <p>{{document.documentname}}</p>
+        </div>
+        <div class="search-bar">
+            <input type="text" name="search" [(ngModel)]="searchString">
+            <button (click)="search(searchString)">Search</button>
+        </div>
     </div>
 </div>

@@ -1,0 +1,29 @@
+.document-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    padding-bottom: 200px;
+}
+
+.document-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttons {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.document-name {
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+.content {
+    margin-left: 14px;
+    margin-right: 14px;
+}

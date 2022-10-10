@@ -1,11 +1,30 @@
+.document-list-container {
+  margin: 128px;
+}
+
+.document-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.document-list-items {
+}
+
 .document {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    padding: 12px;
-    border-top: 1px solid black;
-  }
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  border-bottom: 1px solid gray;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
 
 p {
-    padding: 12px;
+    padding-right: 12px;
 }
