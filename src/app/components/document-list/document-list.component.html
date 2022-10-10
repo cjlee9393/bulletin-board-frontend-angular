@@ -2,7 +2,7 @@
 <div class="document-list-container">
     <div class="document-list-header">
         <h1>{{boardname}}</h1>
-        <button (click)="createDocument()">Create New</button>
+        <button (click)="createDocument()">Create</button>
     </div>
 
     <app-document-create *ngIf="isShowDocumentCreate" [document]="document"></app-document-create>
