@@ -76,6 +76,7 @@ export class DocumentListComponent implements OnInit {
       content: ''
     } as Document;
 
+    this.isShowDocument = false;
     this.isShowDocumentCreate = true;
     this.isShowDocumentList = false;
   }

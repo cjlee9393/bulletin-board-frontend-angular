@@ -1,0 +1,19 @@
+input {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 50px;
+}
+
+button {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+label {
+    font-size: 1.2em;
+}
