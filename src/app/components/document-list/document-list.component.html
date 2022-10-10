@@ -1,0 +1,5 @@
+<p>document-list works!</p>
+<div class="document" *ngFor="let document of documents" (click)="viewDocument(document)">
+    <p>{{document.did}}</p>
+    <p>{{document.documentname}}</p>
+</div>

@@ -3,9 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
-
+  production: false,
+  appName: 'dbTeamProjectFront',
+  apiHost: 'http://localhost:3000',
+  username: "cjlee93",
+  password: "speak-and-enter",
+  bid: 2,
+  token_auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3cml0ZXIiOnsid2lkIjoxLCJ1c2VybmFtZSI6ImNqbGVlIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsInBvaW50IjowfSwiaWF0IjoxNjY1MTExNjQ1fQ.2UQlqsqq55PdTnba-DiIMQ5POoFgNtuyqkmfUWMHiRE"
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
