@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Document } from 'src/app/models/document';
+import { Comment } from 'src/app/models/comment';
 import { DocumentService } from 'src/app/services/document.service';
+import { CommentService } from 'src/app/services/comment.service';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
@@ -15,6 +17,7 @@ const bid = environment.bid;
 export class DocumentListComponent implements OnInit {
   documents: Document[];
   document: Document;
+  comments: Comment[];
   searchString: string;
   
   isShowDocument: boolean;
@@ -22,9 +25,10 @@ export class DocumentListComponent implements OnInit {
 
   mySubscription;
 
-  constructor(private documentService: DocumentService, private router: Router) {
+  constructor(private documentService: DocumentService, private commentService: CommentService, private router: Router) {
     this.documents = [];
     this.document = {} as Document;
+    this.comments = [];
     this.searchString = '';
     this.isShowDocument = false;
     this.isShowDocumentList = false;
@@ -48,6 +52,11 @@ export class DocumentListComponent implements OnInit {
   }
 
   viewDocument(document: Document): void {
+    this.commentService.getComments(document.did).subscribe(res => {
+      this.comments = res;
+
+      console.log(this.comments);
+    })
     this.document = document;
     this.isShowDocument = true;
   }

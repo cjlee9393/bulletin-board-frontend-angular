@@ -8,3 +8,4 @@
 <div *ngIf="isShowDocumentEdit">
     <app-document-edit [document]="document"></app-document-edit>
 </div>
+<app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>

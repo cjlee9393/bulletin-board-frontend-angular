@@ -1,1 +1,11 @@
-<p>comment works!</p>
+<div class="comment-view" *ngIf="isShowCommentView">
+    <p>wid: {{comment.wid}}</p>
+    <p>username: {{comment.username}}</p>
+    <p>cid: {{comment.cid}}</p>
+    <p>content: {{comment.content}}</p>
+    <button (click)="edit(comment)">Edit</button>
+</div>
+
+<div *ngIf="isShowCommentEdit">
+    <app-comment-edit [comment]="comment"></app-comment-edit>
+</div>

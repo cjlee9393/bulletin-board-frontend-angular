@@ -1,1 +1,3 @@
-<p>comment-edit works!</p>
+<label>content</label><br>
+<textarea name="content" value="{{comment.content}}" [(ngModel)]="comment.content"></textarea><br>
+<button (click)="edit(comment)">Edit</button>

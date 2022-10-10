@@ -1,4 +1,4 @@
-<app-document *ngIf="isShowDocument" [document]="document"></app-document>
+<app-document *ngIf="isShowDocument" [document]="document" [comments]="comments"></app-document>
 <div *ngIf="isShowDocumentList">
     <div class="search-bar">
         <input type="text" name="search" [(ngModel)]="searchString">
