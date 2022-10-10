@@ -8,10 +8,15 @@
     <app-document-create *ngIf="isShowDocumentCreate" [document]="document"></app-document-create>
     <app-document *ngIf="isShowDocument" [document]="document" [comments]="comments"></app-document>
     <div class="document-list-items" *ngIf="isShowDocumentList">
-        <div class="document" *ngFor="let document of documents" (click)="viewDocument(document)">
-            <p>{{document.did}}</p>
-            <p>{{document.documentname}}</p>
-        </div>
+        <table class="document-table">
+            <tr>
+                <th *ngFor="let tableHeader of tableHeaders">{{tableHeader}}</th>
+            </tr>
+            <tr *ngFor="let document of documents" (click)="viewDocument(document)">
+                <td>{{document.did}}</td>
+                <td>{{document.documentname}}</td>
+            </tr>
+        </table>
         <div class="search-bar">
             <input type="text" name="search" [(ngModel)]="searchString">
             <button (click)="search(searchString)">Search</button>
