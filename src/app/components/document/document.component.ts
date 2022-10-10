@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Document } from 'src/app/models/document';
 import { Comment } from 'src/app/models/comment';
+import { DocumentService } from 'src/app/services/document.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-document',
@@ -15,7 +17,7 @@ export class DocumentComponent implements OnInit {
   isShowDocumentView: boolean;
   isShowDocumentEdit: boolean;
 
-  constructor() {
+  constructor(private documentService: DocumentService, private route: ActivatedRoute, private router: Router) {
     this.document = {} as Document;
     this.comments = [];
     this.isShowDocumentView = false;
@@ -33,6 +35,10 @@ export class DocumentComponent implements OnInit {
   }
 
   deleteDocument(): void {
-    alert('deleteDocument()')
+    this.documentService.deleteDocument(this.document.did).subscribe(res => {
+      console.log('delete reqeust sent');
+
+      this.router.navigate(['/']);
+    })
   }
 }

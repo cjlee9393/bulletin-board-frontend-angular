@@ -51,4 +51,10 @@ export class DocumentService {
 
     return this.httpClient.post(path, body, requestOptions) as Observable<Object>;
   }
+
+  deleteDocument(did: number): Observable<Object> {
+    const path = `${API_HOST}/documents?did=${did}`
+
+    return this.httpClient.delete(path, requestOptions) as Observable<Object>;
+  }
 }
