@@ -17,6 +17,7 @@ import { DocumentCreateComponent } from './components/document-create/document-c
 import { BoardCreateComponent } from './components/board-create/board-create.component';
 import { WriterLoginComponent } from './writer-login/writer-login.component';
 import { WriterRegisterComponent } from './writer-register/writer-register.component';
+import { CommentCreateComponent } from './components/comment-create/comment-create.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { WriterRegisterComponent } from './writer-register/writer-register.compo
     BoardCreateComponent,
     WriterLoginComponent,
     WriterRegisterComponent,
+    CommentCreateComponent,
   ],
   imports: [
     BrowserModule,

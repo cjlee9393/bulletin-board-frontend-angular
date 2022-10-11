@@ -13,12 +13,14 @@ const API_HOST = environment.apiHost;
 
 export class WriterService {
   username: string;
+  wid: number;
   point: number;
   token_auth: string;
   currentWriter: BehaviorSubject<Writer>;
 
   constructor(private httpClient: HttpClient) {
     this.username = '';
+    this.wid = 0;
     this.point = 0;
     this.token_auth = '';
     this.currentWriter = new BehaviorSubject({} as Writer)
@@ -44,7 +46,7 @@ export class WriterService {
         password: (res as Writer).password,
         point: (res as Writer).point,
       }
-
+      this.wid = (res as any).wid;
       this.token_auth = (res as any).token_auth;
       this.currentWriter.next(writer);
 

@@ -1,0 +1,15 @@
+.comment-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid gray;
+}
+
+.username {
+    font-weight: bold;
+}
+
+button {
+    margin-left: 14px;
+}

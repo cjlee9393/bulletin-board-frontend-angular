@@ -1,5 +1,5 @@
-<div class="comment-edit-container">
+<div class="comment-create-container">
     <label>content</label><br>
     <textarea name="content" value="{{comment.content}}" [(ngModel)]="comment.content"></textarea><br>
-    <button (click)="edit(comment)">Edit</button>
+    <button (click)="create(document.did, comment)">Create</button>
 </div>

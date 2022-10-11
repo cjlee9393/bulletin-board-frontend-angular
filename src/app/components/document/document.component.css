@@ -3,6 +3,8 @@
     flex-direction: column;
     row-gap: 14px;
     padding-bottom: 200px;
+    margin-bottom: 20px;
+    border-bottom: double 4px black;
 }
 
 .document-header {
@@ -18,4 +20,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.comment-container {
+    padding-bottom: 20px;
 }

@@ -11,4 +11,9 @@
 <div *ngIf="isShowDocumentEdit">
     <app-document-edit [document]="document"></app-document-edit>
 </div>
-<app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+<div class="comment-container">
+    <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+</div>
+<div class="comment-create-container">
+    <app-comment-create [document]="document"></app-comment-create>
+</div>

@@ -1,8 +1,8 @@
 <div class="comment-view" *ngIf="isShowCommentView">
-    <p>wid: {{comment.wid}}</p>
-    <p>username: {{comment.username}}</p>
-    <p>cid: {{comment.cid}}</p>
-    <p>content: {{comment.content}}</p>
+    <div>
+        <span class="username">{{comment.username}}: </span>
+        <span class="content">{{comment.content}}</span>
+    </div>
     <button (click)="edit(comment)">Edit</button>
 </div>
 

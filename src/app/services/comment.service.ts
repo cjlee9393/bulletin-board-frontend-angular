@@ -42,4 +42,20 @@ export class CommentService {
 
     return this.httpClient.patch(path, body, requestOptions) as Observable<Object>;
   }
+
+  createComment(did:number, comment: Comment): Observable<Object> {
+    const path = `${API_HOST}/comments`
+    const body = {
+      wid: this.writerService.wid,
+      did: did,
+      content: comment.content
+    };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
+
+    return this.httpClient.post(path, body, requestOptions) as Observable<Object>;
+  }
 }
