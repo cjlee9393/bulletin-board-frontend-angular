@@ -6,12 +6,6 @@ import { Writer } from '../models/writer';
 import { environment } from 'src/environments/environment';
 
 const API_HOST = environment.apiHost;
-const token_auth = environment.token_auth;
-const headers = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${token_auth}`
-})
-const requestOptions = { headers: headers };
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +27,7 @@ export class WriterService {
   authenticate(username: string, password: string, callback: Function): void {
     const path = `${API_HOST}/authenticate?username=${username}&password=${password}`
 
-    this.httpClient.get(path, requestOptions).subscribe(res => {
+    this.httpClient.get(path).subscribe(res => {
       if (!res){
         const err = new Error();
         err.name = "LoginFailError";
@@ -51,8 +45,8 @@ export class WriterService {
         point: (res as Writer).point,
       }
 
-      this.currentWriter.next(writer);
       this.token_auth = (res as any).token_auth;
+      this.currentWriter.next(writer);
 
       callback();
     })
@@ -72,17 +66,27 @@ export class WriterService {
       password: password
     }
 
-    return this.httpClient.post(path, body, requestOptions) as Observable<Object>
+    return this.httpClient.post(path, body) as Observable<Object>
   }
 
   getWriters(): Observable<Writer[]> {
     const path = `${API_HOST}/writers`
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.get(path, requestOptions) as Observable<Writer[]>
   }
 
   deliverPoint(srcWid: number, dstWid: number, point: number): Observable<Writer> {
     const path = `${API_HOST}/deliverPoint?srcWid=${srcWid}&dstWid=${dstWid}&point=${point}`
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.get(path, requestOptions) as Observable<Writer>
   }

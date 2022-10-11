@@ -31,12 +31,12 @@ export class HeaderComponent implements OnInit {
         this.username = res.username;
         this.point = res.point;
         this.isLoggedin = true;
-      }
-    })
 
-    this.boardService.getBoards().subscribe(res => {
-      this.boards = res;
-    })
+        this.boardService.getBoards().subscribe(res => {
+          this.boards = res;
+        })
+      }
+    })    
 
     this.boardService.statusChange().subscribe(res => {
       if (res) {

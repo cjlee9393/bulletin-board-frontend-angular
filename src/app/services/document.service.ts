@@ -3,14 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Document } from '../models/document';
 import { environment } from 'src/environments/environment';
+import { WriterService } from './writer.service';
 
 const API_HOST = environment.apiHost;
-const token_auth = environment.token_auth;
-const headers = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${token_auth}`
-})
-const requestOptions = { headers: headers };
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +13,15 @@ const requestOptions = { headers: headers };
 export class DocumentService {
   tableHeaders: string[] = ['did', 'documentname'];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private writerService: WriterService) { }
 
   getDocuments(bid: number): Observable<Document[]> {
     const path = `${API_HOST}/documents/${bid}`
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.get(path, requestOptions) as Observable<Document[]>
   }
@@ -33,9 +33,14 @@ export class DocumentService {
     
     const path = `${API_HOST}/documents/${did}`
     const body = {
-                  documentname: documentname,
-                  content: content
-                };
+      documentname: documentname,
+      content: content
+    };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.patch(path, body, requestOptions) as Observable<Object>;
   }
@@ -44,17 +49,27 @@ export class DocumentService {
     
     const path = `${API_HOST}/documents`
     const body = {
-                  wid: wid,
-                  bid: bid,
-                  documentname: document.documentname,
-                  content: document.content
-                };
+      wid: wid,
+      bid: bid,
+      documentname: document.documentname,
+      content: document.content
+    };  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.post(path, body, requestOptions) as Observable<Object>;
   }
 
   deleteDocument(did: number): Observable<Object> {
     const path = `${API_HOST}/documents?did=${did}`
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.delete(path, requestOptions) as Observable<Object>;
   }

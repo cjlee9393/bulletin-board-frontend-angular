@@ -4,24 +4,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { WriterService } from './writer.service';
 
 const API_HOST = environment.apiHost;
-const token_auth = environment.token_auth;
-const headers = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${token_auth}`
-})
-const requestOptions = { headers: headers };
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private writerService: WriterService) {}
 
   getComments(did: number): Observable<Comment[]> {
     const path = `${API_HOST}/comments/${did}`
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.get(path, requestOptions) as Observable<Comment[]>
   }
@@ -32,8 +32,13 @@ export class CommentService {
     
     const path = `${API_HOST}/comments/${cid}`
     const body = {
-                  content: content
-                };
+      content: content
+    };
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.writerService.token_auth}`
+    })
+    const requestOptions = { headers: headers };
 
     return this.httpClient.patch(path, body, requestOptions) as Observable<Object>;
   }
