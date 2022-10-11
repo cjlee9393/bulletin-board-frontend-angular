@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Board } from '../models/board';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
+import { Subject } from 'rxjs';
 
 const API_HOST = environment.apiHost;
 const token_auth = environment.token_auth;
@@ -18,6 +20,7 @@ const requestOptions = { headers: headers };
 })
 export class BoardService {
   board: Board;
+  private isChanged: Subject<boolean> = new ReplaySubject<boolean>(1);
 
   constructor(private httpClient: HttpClient) {
     this.board = {} as Board;
@@ -35,5 +38,23 @@ export class BoardService {
 
   getBoard(): Board {
     return this.board;
+  }
+
+  createBoard(board: Board): Observable<Object> {
+    this.isChanged.next(false);
+
+    const path = `${API_HOST}/boards`
+    const body = {
+      boardname: board.boardname
+    }
+
+    this.isChanged.next(true);
+
+    return this.httpClient.post(path, body, requestOptions) as Observable<Object>
+  }
+
+  statusChange(): Observable<boolean> {
+
+    return this.isChanged.asObservable();
   }
 }

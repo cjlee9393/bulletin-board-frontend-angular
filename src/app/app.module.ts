@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DeliverPointComponent } from './components/deliver-point/deliver-point.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
+import { BoardCreateComponent } from './components/board-create/board-create.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DocumentCreateComponent } from './components/document-create/document-c
     HeaderComponent,
     DeliverPointComponent,
     DocumentCreateComponent,
+    BoardCreateComponent,
   ],
   imports: [
     BrowserModule,

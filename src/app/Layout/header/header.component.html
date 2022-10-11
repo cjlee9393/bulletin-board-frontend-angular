@@ -2,7 +2,7 @@
     <select class="select-input" name="selectedBoard" [(ngModel)]="selectedBoard" (ngModelChange)="setBoard(selectedBoard)">
         <option *ngFor="let board of boards" [ngValue]="board">{{board.boardname}}</option>
     </select>
-    <a routerLink="">Board</a>
+    <a routerLink="/boardCreate">Board Create</a>
     <a routerLink="/deliverPoint">Deliver Point</a>
     <span>Username: {{username}}</span>
     <span>Point: {{point}}</span>

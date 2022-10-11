@@ -35,6 +35,14 @@ export class HeaderComponent implements OnInit {
     this.boardService.getBoards().subscribe(res => {
       this.boards = res;
     })
+
+    this.boardService.statusChange().subscribe(res => {
+      if (res) {
+        this.boardService.getBoards().subscribe(res => {
+          this.boards = res;
+        })
+      }
+    })
   }
 
   setBoard(board: Board): void {

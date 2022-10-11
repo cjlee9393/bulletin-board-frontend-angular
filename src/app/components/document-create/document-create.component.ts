@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { DocumentService } from 'src/app/services/document.service';
+import { BoardService } from 'src/app/services/board.service';
 import { Document } from 'src/app/models/document';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 const wid = environment.wid;
-const bid = environment.bid;
 
 @Component({
   selector: 'app-document-create',
@@ -16,7 +16,7 @@ const bid = environment.bid;
 export class DocumentCreateComponent implements OnInit {
   @Input() document: Document;
 
-  constructor(private documentService: DocumentService, private route: ActivatedRoute, private router: Router) {
+  constructor(private documentService: DocumentService, private boardService: BoardService, private route: ActivatedRoute, private router: Router) {
     this.document = {} as Document;
   }
 
@@ -24,6 +24,8 @@ export class DocumentCreateComponent implements OnInit {
   }
 
   create(document: Document): void {
+    const bid = this.boardService.getBoard().bid;
+
     this.documentService.createDocument(wid, bid, document).subscribe(res => {
       console.log('post reqeust sent');
 
