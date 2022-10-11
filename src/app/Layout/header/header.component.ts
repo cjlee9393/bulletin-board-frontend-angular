@@ -5,9 +5,6 @@ import { environment } from 'src/environments/environment';
 import { Board } from 'src/app/models/board';
 import { ActivatedRoute, Router } from '@angular/router';
 
-const username = environment.username;
-const password = environment.password;
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,18 +15,23 @@ export class HeaderComponent implements OnInit {
   point: number;
   boards: Board[];
   selectedBoard: Board;
+  isLoggedin: boolean;
 
   constructor(private writerService: WriterService, private boardService: BoardService, private route: ActivatedRoute, private router: Router) {
     this.username = '';
     this.point = 0;
     this.boards = [];
     this.selectedBoard = {} as Board;
+    this.isLoggedin = false;
   }
 
   ngOnInit(): void {
-    this.writerService.authenticate(username, password).subscribe(res => {
-      this.username = res.username;
-      this.point = res.point;
+    this.writerService.statusChange().subscribe(res => {
+      if (res.username){
+        this.username = res.username;
+        this.point = res.point;
+        this.isLoggedin = true;
+      }
     })
 
     this.boardService.getBoards().subscribe(res => {
@@ -48,6 +50,12 @@ export class HeaderComponent implements OnInit {
   setBoard(board: Board): void {
     this.boardService.setBoard(board);
 
+    this.router.navigate(['/']);
+  }
+
+  logout(): void {
+    this.isLoggedin = false;
+    this.writerService.logout();
     this.router.navigate(['/']);
   }
 }

@@ -2,8 +2,12 @@
     <select class="select-input" name="selectedBoard" [(ngModel)]="selectedBoard" (ngModelChange)="setBoard(selectedBoard)">
         <option *ngFor="let board of boards" [ngValue]="board">{{board.boardname}}</option>
     </select>
-    <a routerLink="/boardCreate">Board Create</a>
-    <a routerLink="/deliverPoint">Deliver Point</a>
-    <span>Username: {{username}}</span>
-    <span>Point: {{point}}</span>
+    <a *ngIf="isLoggedin" routerLink="/boardCreate">Board Create</a>
+    <a *ngIf="isLoggedin" routerLink="/deliverPoint">Deliver Point</a>
+    <a *ngIf="!isLoggedin" routerLink="/writerLogin">Login</a>
+    <a *ngIf="!isLoggedin" routerLink="/writerRegister">Register</a>
+    
+    <span *ngIf="isLoggedin">Username: {{username}}</span>
+    <span *ngIf="isLoggedin">Point: {{point}}</span>
+    <a *ngIf="isLoggedin" (click)="logout()">Logout</a>
 </div>

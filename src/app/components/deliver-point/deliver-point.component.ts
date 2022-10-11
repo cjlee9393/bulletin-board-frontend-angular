@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Writer } from 'src/app/models/writer';
-import { environment } from 'src/environments/environment';
 import { WriterService } from 'src/app/services/writer.service';
-
-const username = environment.username;
-const password = environment.password;
 
 @Component({
   selector: 'app-deliver-point',
@@ -25,7 +21,7 @@ export class DeliverPointComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.writerService.authenticate(username, password).subscribe(res => {
+    this.writerService.statusChange().subscribe(res => {
       this.loggedInWriter = res;
     })
 

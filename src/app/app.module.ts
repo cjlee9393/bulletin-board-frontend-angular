@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { DeliverPointComponent } from './components/deliver-point/deliver-point.component';
 import { DocumentCreateComponent } from './components/document-create/document-create.component';
 import { BoardCreateComponent } from './components/board-create/board-create.component';
+import { WriterLoginComponent } from './writer-login/writer-login.component';
+import { WriterRegisterComponent } from './writer-register/writer-register.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { BoardCreateComponent } from './components/board-create/board-create.com
     DeliverPointComponent,
     DocumentCreateComponent,
     BoardCreateComponent,
+    WriterLoginComponent,
+    WriterRegisterComponent,
   ],
   imports: [
     BrowserModule,

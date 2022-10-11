@@ -1,0 +1,9 @@
+<div class="writer-register-container">
+    <label>Username</label><br>
+    <input type="text" name="username" value="{{username}}" [(ngModel)]="username"><br>
+    <label>Password</label><br>
+    <input type="password" name="password" value="{{password}}" [(ngModel)]="password"><br>
+    <label>Password Repeat</label><br>
+    <input type="password" name="passwordRepeat" value="{{passwordRepeat}}" [(ngModel)]="passwordRepeat"><br>
+    <button (click)="register(username, password, passwordRepeat)">Register</button>
+</div>

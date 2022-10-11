@@ -6,9 +6,6 @@ export const environment = {
   production: false,
   appName: 'dbTeamProjectFront',
   apiHost: 'http://localhost:3000',
-  username: "cjlee93",
-  password: "speak-and-enter",
-  wid: 2,
   bid: 2,
   boardname: 'board',
   token_auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3cml0ZXIiOnsid2lkIjoxLCJ1c2VybmFtZSI6ImNqbGVlIiwicGFzc3dvcmQiOiJwYXNzd29yZCIsInBvaW50IjowfSwiaWF0IjoxNjY1MTExNjQ1fQ.2UQlqsqq55PdTnba-DiIMQ5POoFgNtuyqkmfUWMHiRE"
