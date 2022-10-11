@@ -3,11 +3,10 @@ import { Document } from 'src/app/models/document';
 import { Comment } from 'src/app/models/comment';
 import { DocumentService } from 'src/app/services/document.service';
 import { CommentService } from 'src/app/services/comment.service';
+import { BoardService } from 'src/app/services/board.service';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-
-const bid = environment.bid;
-const boardname = environment.boardname;
+import { Board } from 'src/app/models/board';
 
 @Component({
   selector: 'app-document-list',
@@ -15,7 +14,7 @@ const boardname = environment.boardname;
   styleUrls: ['./document-list.component.css']
 })
 export class DocumentListComponent implements OnInit {
-  boardname: string;
+  board: Board;
   documents: Document[];
   document: Document;
   comments: Comment[];
@@ -28,8 +27,8 @@ export class DocumentListComponent implements OnInit {
 
   mySubscription;
 
-  constructor(private documentService: DocumentService, private commentService: CommentService, private router: Router) {
-    this.boardname = boardname;
+  constructor(private documentService: DocumentService, private commentService: CommentService, private boardService: BoardService, private router: Router) {
+    this.board = {} as Board;
     this.documents = [];
     this.document = {} as Document;
     this.comments = [];
@@ -49,7 +48,9 @@ export class DocumentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.documentService.getDocuments(bid).subscribe(res => {
+    this.board = this.boardService.getBoard();
+
+    this.documentService.getDocuments(this.board.bid).subscribe(res => {
       this.documents = res;
     })
 
